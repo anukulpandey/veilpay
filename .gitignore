@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.fuji-keys.json
+.ref/
+.claude/
+contracts/artifacts/
+contracts/cache/
+contracts/typechain-types/
+contracts/generated-types/
+contracts/zkit/
+web/public/circuits/
+web/src/gen/
+.DS_Store
