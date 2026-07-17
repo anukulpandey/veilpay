@@ -1,0 +1,22 @@
+[
+  {
+    "label": "Employer",
+    "role": "runs payroll",
+    "pk": "0x39695e49707e82934fd1878d2a923001b979e1defae86f60aeacc3a23e99102b"
+  },
+  {
+    "label": "Alice",
+    "role": "employee",
+    "pk": "0xbaac3cb4243f68bd2200bf6582f917016de7f78ecf6e66e6faa59f4e75037835"
+  },
+  {
+    "label": "Bob",
+    "role": "employee",
+    "pk": "0xc47d449f711b6820e68441b978134a17e230a1e170a9d039248485d8273bb182"
+  },
+  {
+    "label": "Auditor",
+    "role": "compliance",
+    "pk": "0x589c3fde0bd581c76fe370abad4174930d3beb21f617c989cbc10860f17cbe16"
+  }
+]

@@ -97,10 +97,23 @@ plus one thin addition:
   as EIP-1193 providers — judges can switch Employer → Alice → Bob → Auditor
   instantly, no wallet extension required.
 
-## Live demo
+## Live on Avalanche Fuji (chain 43113)
 
-- **Network**: Avalanche Fuji (chain 43113) — addresses in
-  [`contracts/deployments/fuji.json`](contracts/deployments/fuji.json) after deploy
+| Contract | Address |
+|---|---|
+| EncryptedERC (converter) | [`0xCB9aB1F20d1d5Cf990694e60470FB28B23041D1b`](https://testnet.snowtrace.io/address/0xCB9aB1F20d1d5Cf990694e60470FB28B23041D1b) |
+| Registrar | `0x91Ee29CF99EC38f5fe35FB00480cc2240845E6c8` |
+| PayrollManager | `0x515bA9A35A496FC3FC5595c8A06C1343Da26a763` |
+| Mock USDC (open mint) | `0x55b14Cf06F3E4856EaC195D682d738DD279D63f5` |
+| Transfer verifier (prod set) | `0x1F1416F0F2b0E2eD3370A0230492601B08d3E125` |
+
+Full manifest: [`contracts/deployments/fuji.json`](contracts/deployments/fuji.json).
+Sample **encrypted payroll transactions** (amounts are ciphertext — try to find the salary):
+[`0xa894…9994`](https://testnet.snowtrace.io/tx/0xa8947a8be30a166def3b625557a2aeded3f479588a84467474f8b0964f6d9994)
+*(Alice, gross 2,500.00 — only she and the auditor can know that)* and
+[`0xac99…d31f`](https://testnet.snowtrace.io/tx/0xac99f555228fa7debf2978b53e0d1facc4ee2b2481d2adf7e7d998f1848cd31f)
+*(Bob)* — demo identities in `contracts/deployments/fuji-demo.json`.
+
 - **E2E proof of the whole flow** (local): `contracts/scripts/e2e-local.ts` —
   registers 4 users, shields 50k, runs encrypted payroll, decrypts payslips,
   withdraws, audits. Every step asserted.

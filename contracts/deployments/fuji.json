@@ -1,0 +1,19 @@
+{
+  "network": "fuji",
+  "chainId": "43113",
+  "deployer": "0xF687c0FF366fec607Ad211c62D8407B6e5299e7b",
+  "auditor": "0xF687c0FF366fec607Ad211c62D8407B6e5299e7b",
+  "startBlock": 57056781,
+  "contracts": {
+    "registrationVerifier": "0x5B7b0393F1cD20B14e4AF5E20DB88084fBc063A2",
+    "mintVerifier": "0x8b410d689d0f8726d3AEB81b65011F99C7dF08Ee",
+    "withdrawVerifier": "0x5A6baF668B433E680d6E31edF50843388A5DdDF0",
+    "transferVerifier": "0x1F1416F0F2b0E2eD3370A0230492601B08d3E125",
+    "burnVerifier": "0x72Fd58d2c2Bc61f2DDdb2646Dd9e78cA6B655B25",
+    "babyJubJub": "0x2D3B9e1ec47C5637fbDA8Ac62e1DE9b9d90aEE41",
+    "registrar": "0x91Ee29CF99EC38f5fe35FB00480cc2240845E6c8",
+    "encryptedERC": "0xCB9aB1F20d1d5Cf990694e60470FB28B23041D1b",
+    "mockUSDC": "0x55b14Cf06F3E4856EaC195D682d738DD279D63f5",
+    "payrollManager": "0x515bA9A35A496FC3FC5595c8A06C1343Da26a763"
+  }
+}

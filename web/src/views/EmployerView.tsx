@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useAccount, useChainId, usePublicClient, useReadContract, useWriteContract } from "wagmi";
 import type { useEERC } from "@avalabs/eerc-sdk";
 import { ABIS, EERC_DECIMALS, USDC_DECIMALS, type Deployment } from "../config";
@@ -22,6 +22,11 @@ export function EmployerView({ eerc, deployment }: Props) {
   const C = deployment.contracts;
 
   const enc = eerc.useEncryptedBalance(C.mockUSDC as `0x${string}`);
+  // async loops (payroll) must read the FRESHEST hook state, not the render
+  // they were started in - otherwise the 2nd transfer proves against a stale
+  // encrypted balance and the contract rejects it with InvalidProof
+  const encRef = useRef(enc);
+  encRef.current = enc;
 
   // ---- plain + encrypted treasury ----
   const { data: usdcBal, refetch: refetchUsdc } = useReadContract({
@@ -185,11 +190,27 @@ export function EmployerView({ eerc, deployment }: Props) {
             gross: amtStr,
             currency: "eUSDC",
           });
-          const { transactionHash } = await enc.privateTransfer(wallet, amount, payslip);
+          const balBefore = JSON.stringify(encRef.current.encryptedBalance, (_, v) =>
+            typeof v === "bigint" ? v.toString() : v,
+          );
+          const { transactionHash } = await encRef.current.privateTransfer(
+            wallet,
+            amount,
+            payslip,
+          );
           await publicClient!.waitForTransactionReceipt({ hash: transactionHash });
           setRowStatus((s) => ({ ...s, [wallet]: { state: "sent", hash: transactionHash } }));
           paid.push(wallet);
-          enc.refetchBalance();
+          // wait until the hook has re-synced the new encrypted balance before
+          // proving the next payment
+          for (let t = 0; t < 30; t++) {
+            encRef.current.refetchBalance();
+            await new Promise((r) => setTimeout(r, 1500));
+            const now = JSON.stringify(encRef.current.encryptedBalance, (_, v) =>
+              typeof v === "bigint" ? v.toString() : v,
+            );
+            if (now !== balBefore) break;
+          }
         } catch (e: any) {
           setRowStatus((s) => ({
             ...s,
