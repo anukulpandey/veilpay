@@ -8,6 +8,10 @@
 
 Built for the **Team1 India Speedrun — Privacy on Avalanche** (July 2026).
 
+**🌐 Live product: [veilpay.notcool.in](https://veilpay.notcool.in)** — landing page,
+[docs](https://veilpay.notcool.in/#/docs), and the [app](https://veilpay.notcool.in/#/app)
+with one-click demo roles on Fuji (no wallet needed).
+
 ---
 
 ## The problem
